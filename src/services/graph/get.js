@@ -14,16 +14,16 @@ const getGraphDataAsCIDFromQueryData = async (req, res) => {
   }
   console.log("req.body.data", req.body.data)
 
-  const { account, endpoint, query, name } = req.body.data
+  const { account, endpoint, query, queryName } = req.body.data
 
-  if (!account || !endpoint || !query) {
+  if (!account || !endpoint || !query || !queryName) {
     return res.status(400).json({
       error: "invalid request",
     })
   }
 
   const variables = {
-    account
+    account,
   }
 
   const queryDecoded = Base64.decode(query)
@@ -32,7 +32,7 @@ const getGraphDataAsCIDFromQueryData = async (req, res) => {
     const dataRes = await request(endpoint, queryDecoded, variables)
 
     const buffer = Buffer.from(JSON.stringify(dataRes))
-    const dataFile = [new File([buffer], `${name}-${account}.json`)]
+    const dataFile = [new File([buffer], `${queryName}-${account}.json`)]
     const cid = await storage.put(dataFile)
 
     console.log("stored files with cid:", cid)
