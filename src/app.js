@@ -15,11 +15,11 @@ app.group("/query", (router) => {
 })
 
 app.group("/graph", (router) => {
-  router.get("/", getGraphDataAsCIDFromQueryData)
+  router.post("/", getGraphDataAsCIDFromQueryData)
 })
 
 app.group("/ipfs", (router) => {
-  router.get("/", getDataFromCIDIPFS)
+  router.post("/", getDataFromCIDIPFS)
 })
 
 module.exports = app
