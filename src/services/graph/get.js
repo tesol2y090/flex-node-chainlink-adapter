@@ -1,7 +1,5 @@
-const { gql, request } = require("graphql-request")
+const { request } = require("graphql-request")
 const { Web3Storage, File } = require("web3.storage")
-const { getFileUrl } = require("../../utils")
-const axios = require("axios").default
 const { Base64 } = require("js-base64")
 require("dotenv").config()
 
@@ -18,15 +16,14 @@ const getGraphDataAsCIDFromQueryData = async (req, res) => {
 
   const { account, endpoint, query, chainId, name } = req.body.data
 
-  if (!account || !endpoint || !chainId || !name || !query) {
+  if (!account || !endpoint || !query) {
     return res.status(400).json({
       error: "invalid request",
     })
   }
 
   const variables = {
-    account: account,
-    borrower: account,
+    account
   }
 
   const queryDecoded = Base64.decode(query)
