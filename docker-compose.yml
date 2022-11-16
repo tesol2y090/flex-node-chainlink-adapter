@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  flex-node-adapter:
+    container_name: flex-node-adapter
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    command: start
