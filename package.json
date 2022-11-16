@@ -1,10 +1,10 @@
 {
   "name": "chainlink-flex-node-adapter",
   "version": "0.1.0",
-  "main": "./src/index.js",
+  "main": "./app/server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node app/server.js",
     "start-dev": "npx nodemon"
   },
   "dependencies": {
